@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Python for Analytics</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Rabbani M" />
+    <meta name="date" content="2019-02-24" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Python for Analytics
+### Rabbani M
+### 2019-02-24
+
+---
+
+
+
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1920px-Python.svg.png)
+background-size: contain
+class: inverse, top, right
+
+# Session 1
+
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/)
+
+
+---
+#Overview
+There will be a total of five two-hour sessions in this course. Today we will cover the Python Basics and will use JupyterLab. 
+
+In the next four sessions we will cover the follwoing key steps of a typical Data Analytics Project : 
+- Import raw dataset into analytics environment  - Session 2
+- Explore &amp; Visualize - Session 2, 3, 4
+- Perform Data Cleaning - Session 2, 3
+- Perform Feature Selection and simple model development - Session 3, 4
+- Analyze the results - Session 4
+- Present findings - Session 4, 5
+
+
+---
+# Using JupyterLab
+
+
+- Log on to your Unix Terminal
+
+--
+
+- To launch the JupyterLab, just type 
+```python
+jupyter lab
+```
+
+--
+- You can access JupyterLab by entering the URL printed in the terminal after you run the jupyter lab command. It looks like the following. JupyterLab should open automatically in your browser if you are using Macbook 
+
+ http://localhost:8888/?token=alongalphanumericnumber=alongalphanumericnumber.
+ 
+ ####Let's take 5 minutes to get familiar with the JupyterLab
+ - Open a notebook, add few cells, run `3 + 5` and save the notebook. Explore left pane and menu buttons
+
+.footnote[
+[1] For your home computer, visit the https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html to see the latest instruction on how to install JupyterLab.
+]
+---
+#Markdown For Documenting Analytics
+- A cell can be converted to a markdown cell from menu
+##Header with single "#"
+### Subheader with double "##" and so on
+- Supports HTML and LaTex
+
+- Bullets can be typed with "-" and
+
+- LaTeX inside "$ $", for example "\int_0^\infty" inside dollar signs will be `\(\int_0^\infty\)`
+---
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1920px-Python.svg.png)
+background-size: contain
+
+class: inverse, top, right
+
+# Python Intro
+
+---
+# Python Overview
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1920px-Python.svg.png" alt="Sharingan" width="90" /&gt;
+
+- Currently the most popular programming language
+
+- It is powerful and few lines of code can do job where other langauges can take 3 to 5 times more codes
+
+- It can be a glue language that can be used in-between other language or components
+
+- It can be used almost in any domain and can run everywhere
+
+- Open source and its easy to learn
+
+#### .bottom[ Everything in Python is an Object]
+
+---
+# Python Types
+
+- Python types are dynamic typing, so you do not need to declare.
+
+#### Common Types
+- Int – Any integers or whole numbers like 1, 2, 89 ; Float – 2.171892
+- Bool – True of False
+- Str, unicode – ‘MyString’, u‘MyString’
+- List     – [ 69, 6.9, ‘mystring’, True]
+- Tuple – (69,  6.9, ‘mystring’, True) immutable
+- Set – set([69, 6.9, ‘str’, True]) –no duplicates &amp; unordered
+- Dictionary – {‘key 1’: 6.9, ‘key2’: False} - group of key-value pairs
+
+```python
+x=1
+y= 1.23
+p=True
+Name="Mike"
+print (x, y, p, Name)
+
+```
+    1 1.23  True Mike
+    &lt;class 'int'&gt; &lt;class 'float'&gt; &lt;class 'bool'&gt; &lt;class 'str'&gt;
+---
+# Python Syntax
+* Python uses indentation and/or whitespace to delimit statement blocks 
+* Whitespace within lines does not matter
+* End-of-Line terminates a statement
+
+
+```python
+if 10 &gt; 7:
+  print      ("Ten is greater than seven.")
+```
+
+    Ten is greater than seven.
+
+
+* Comments are marked by #
+
+
+```python
+# But you do not need the syntax mentioned in the  syntax just to print; you need this to develop programs with python
+print ("Hello Python") 
+```
+
+    Hello Python
+---
+# Quiz
+```Python
+x = 10
+y = x
+x = 6
+print(x,", ",y)
+```
+What is the result of running the code above?
+--
+
+- 10, 6
+
+- 6, 10
+
+- 6, 6
+---
+class: inverse, middle, center
+
+# Using Loops, Conditions and Functions
+
+---
+## For Loop
+
+range(start, stop[, step])  where step defaults to 1.
+
+.pull-left[
+
+```python
+for i in range(0,10):
+
+     print(i)
+        
+```
+
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+]
+
+.pull-right[
+
+```python
+for i in range(0,7,2):
+
+    print(i)
+```
+
+    0
+    2
+    4
+    6
+
+```python
+for i in range(1,10):
+    if i == 5:
+        break
+    print (i)
+```
+
+
+]
+---
+.pull-left[
+## While Loop
+```python
+i=0
+while i &lt; 12:
+
+     print(i)
+
+     i+=3
+```
+    
+    0
+    3
+    6
+    9
+]
+.pull-right[
+## For Loop with If Condition
+
+```python
+for i in range(0,10):
+
+    if i % 2 == 0:
+
+        print(i)
+```
+
+    0
+    2
+    4
+    6
+    8
+]  
+
+
+- Python supports to have an else statement with a loop statement.
+---
+# Function
+
+Functions are block of codes that are written once and can be called any time when needed. Python functions are defined using the word `def` as shown below:
+
+    
+
+
+```python
+def function_name(parameters):
+     """docstring"""
+     statement(s)
+     return statement
+```
+
+
+Argumants can be passed in the function as shown below:
+
+.pull-left[
+```python
+def with_args(arg1=0,arg2=['a', 5]):
+    """ A function with arguments """
+    num = arg1 + 3
+    mylist = arg2 + ['b',10]
+    return [num, mylist]
+with_args()
+```
+    [3, ['a', 5, 'b', 10]]
+]
+
+.pull-right[
+#### What would this print?
+```python
+with_args(5)
+```
+]
+
+---
+## Function (Contd.)
+```python
+def with_args(arg1=0,arg2=['a', 5]):
+    """ A function with arguments """
+    num = arg1 + 3
+    mylist = arg2 + ['b',10]
+    return [num, mylist]
+with_args(5)
+```
+  [8, ['a', 5, 'b', 10]]
+
+#### What about this?
+
+```python
+with_args(10, ['x',6])
+```
+--
+    [13, ['x', 6, 'b', 10]]
+--
+---
+## Function (Contd.)
+```python
+def with_args(arg1=0,arg2=['a', 5]):
+    """ A function with arguments """
+    num = arg1 + 3
+    mylist = arg2 + ['b',10]
+    return [num, mylist]
+
+```
+#### Docstring in Function
+
+```python
+# A Docstring is the first statement in the body of a function, which can be accessed with function_name.__doc__ 
+
+with_args.__doc__
+```
+
+
+    ' A function with arguments '
+---
+#Quiz
+Which one is true?
+1. The first code block will print 5 and 4.
+2. The second code block will print 4 and 5
+3. The first code block will print only 5 and function name with address
+4. The second code blcok will print only 5 and function name with address
+
+```python
+def num():
+    num = 5
+    print(num)
+num = 4
+num()
+print(num)
+```
+```python
+num = 4
+def num():
+    num = 5
+    print(num)
+
+num()
+print(num)
+```
+---
+## Lambda
+A lambda function is a small anonymous function. It can take any number of arguments, but allow only one expression.
+
+```python
+x = lambda a, b : a + b 
+print(x(5, 7))
+```
+    12
+
+The usefullness of lambda is shown below by using them as an anonymous function inside another function.
+
+```python
+
+def dup_or_double(n):  
+    return lambda x : x * n
+
+result = dup_or_double (2) 
+
+double = result (50) 
+print (double) 
+```
+    100
+
+
+---
+
+
+## Built-in Functions
+
+
+```python
+#lower(), upper()
+word = 'Hello'
+
+print (word, word.lower(), word.upper())
+```
+    Hello hello HELLO
+    
+```python
+#Concatenation
+
+print ('1' +'2')
+
+print ('Hello' + ' there')
+
+```
+'12'
+&lt;br&gt;
+'Hello there'
+
+---
+
+## Built-in Functions (Contd.)
+
+```python
+#Concatenation with join() method 
+#The method join() returns a string in which the string elements of sequence are joined by str separator.
+str_separator=' '
+list =['I', 'am', 'learning']
+str_separator.join(list)
+#or ' '.join(list)
+```
+
+    'I am learning'
+
+
+
+```python
+#split
+
+s = 'Let\'s split the words'
+
+s.split(' ')
+```
+
+
+    ["Let's", 'split', 'the', 'words']
+
+---
+class: inverse, middle, center
+# Lab - 1
+## Notebook Name: Session1a-PythonDataScienceBook.ipynb
+---
+### Excercise 
+1. Make a function using lambda that returns three strings ( 2 minutes)
+
+--
+```python
+def dup_or_double(n):  
+    return lambda x : x * n
+str3=dup_or_double (3)
+str3("Ha ") + "!"
+```
+---
+
+---
+class: inverse, middle, center
+# Part 2
+# Using List, Tuple and Dictionaries
+
+---
+# List
+List are most flexible and multipurpose data type in Python. It is defined using square bracket and can easily be accessed  and modified.
+
+.pull-left[ 
+```python
+list = [11,22,33]
+
+list
+```
+    [11, 22, 33]
+
+```python
+list[1]
+```
+    22
+    
+```python
+list [0]
+```
+    11
+]
+
+.pull-right[ 
+
+#### What is the value of the following?
+
+list[3]
+
+```python
+#Update
+list[2]=100
+list
+```
+    [11, 22, 100]
+
+```python
+list.append(33)
+list
+```
+    [11, 22, 100, 33]
+]
+
+---
+## List (Contd.)
+.pull-left[ 
+```python
+#Looping through a list
+for i in list:
+    print(i)
+```
+    11
+    22
+    100
+    33
+```python
+#deleting an element
+list.remove(100)
+list
+```
+    [11, 22, 33]
+]
+--
+.pull-right[ 
+```python
+list = [1, 2, 3]
+list2 = [4, 5, 6]
+for x,y in zip(list, list2):
+    print(x,", ",y)
+```
+    1 ,  4
+    2 ,  5
+    3 ,  6
+    
+```python
+#Guess what will be printed value for y
+x = [10,20,30]
+y = x
+x[1] = 42
+print(y)
+```
+]
+--
+.pull-right[ 
+ [10, 42, 30]
+ ]
+
+---
+# Tuple
+
+- Tuples are useful for parallel computing when you do not want something to be changed by a worker process
+
+```python
+#Looks same as list
+tuple1 = ('FRM',350, 'SF','FL')
+tuple1
+```
+    ('FRM', 350, 'SF', 'FL')
+
+- But they are immutable and if the following statement is run, you will get an error message stating - "TypeError: 'tuple' object does not support item assignment"
+&lt;br&gt;
+&lt;br&gt;
+`tuple1[3]= 'VA'`
+
+---
+# Dictionaries
+- Dictionaries are one of the most widely used data types that makes Python powerful and effective for accessing and manipulating data.
+
+.pull-left[
+```python
+#Defining a python dictionary
+
+iphonePrice = {
+    'iphone5' : 200,
+    'iphone6' : 300,
+    'iphone8' : 700,
+    'iphonex' : 900   }
+```
+
+```python
+#accessing an element
+iphonePrice["iphonex"]
+```
+
+    900
+]
+
+.pull-right[
+```python
+#adding an element
+iphonePrice['iphone7']=500
+iphonePrice
+```
+
+    {'iphone5': 200,
+     'iphone6': 300,
+     'iphone8': 700,
+     'iphonex': 900,
+     'iphone7': 500}
+
+]
+
+---
+# List and Dictionary Comprehension
+
+Comrehension is a way to build list or dictionaries quickly
+
+```python
+list = [i**2 for i in range(1, 11)]
+list 
+```
+    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+```python
+import random
+list= [random.randint(0,5) for i in range (1, 10)]
+list
+```
+    [3, 0, 4, 4, 4, 2, 2, 1, 2]
+
+```python
+dict= {i : i**3 for i in range (1, 10)}
+dict
+```
+    {1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343, 8: 512, 9: 729 }
+---
+#Excercise
+1. Create and print all the alphabets in the form of a dictionary.
+&lt;br&gt;
+Hint: 
+  * Use for loop with chr() function
+  * Iterate from 65
+
+--
+
+      
+```python
+# Creating  a dictionary with all the characters
+dict= {i: chr(i) for i in range (65, 91)}
+dict
+```
+{65: 'A',
+ 66: 'B',
+ 67: 'C',
+ 68: 'D',
+ 69: 'E',
+ 70: 'F',
+ 71: 'G',
+ 72: 'H',
+ 73: 'I',
+ 74: 'J',
+ 75: 'K',
+ 76: 'L',
+ 77: 'M',
+ 78: 'N',
+ 79: 'O',
+ 80: 'P',
+ 81: 'Q',
+ 82: 'R',
+ 83: 'S',
+ 84: 'T',
+ 85: 'U',
+ 86: 'V',
+ 87: 'W',
+ 88: 'X',
+ 89: 'Y',
+ 90: 'Z'}
+---
+class: inverse, middle, center
+# Lab - 2
+## Notebook Name: Session1b-PythonDataScienceBook.ipynb
+
+---
+# Excercise 
+2. Use python list for text manipulation. &lt;br&gt;
+(a) Create a python list using the words in this senetence:  `Fannie Mae head office is at DC`. &lt;br&gt;
+(b) Then replace the third (head) and last elements (DC) of the list with `Technology` and `Reston`. &lt;br&gt;
+(c) Convert to list to `'Fannie Mae Technology office is at Reston'` and print the result
+
+---
+## Solution
+```python
+s= "Fannie Mae head office is at DC"
+s=s.split()
+list=s
+list
+```
+    ['Fannie', 'Mae', 'head', 'office', 'is', 'at', 'DC']
+
+```python
+list.remove('head')
+list.remove('DC')
+list
+```
+    ['Fannie', 'Mae', 'office', 'is', 'at']
+
+```python
+list.insert(2, "Technology")
+list.insert(8, "Reston")
+' '.join(list)
+```
+'Fannie Mae Technology office is at Reston'
+
+---
+# Project
+1. Form a group of 3 to 5 participants
+2. Submit your project ideas. It can be any simple data analysis task that is relevent to Fannie Mae.
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
