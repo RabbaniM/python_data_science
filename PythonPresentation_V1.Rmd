@@ -462,19 +462,19 @@ List are most flexible and multipurpose data type in Python. It is defined using
 
 .pull-left[ 
 ```python
-list = [11,22,33]
+list1 = [11,22,33]
 
-list
+list1
 ```
     [11, 22, 33]
 
 ```python
-list[1]
+list1[1]
 ```
     22
     
 ```python
-list [0]
+list1 [0]
 ```
     11
 ]
@@ -487,14 +487,14 @@ list[3]
 
 ```python
 #Update
-list[2]=100
-list
+list1[2]=100
+list1
 ```
     [11, 22, 100]
 
 ```python
-list.append(33)
-list
+list1.append(33)
+list1
 ```
     [11, 22, 100, 33]
 ]
@@ -504,7 +504,7 @@ list
 .pull-left[ 
 ```python
 #Looping through a list
-for i in list:
+for i in list1:
     print(i)
 ```
     11
@@ -513,17 +513,17 @@ for i in list:
     33
 ```python
 #deleting an element
-list.remove(100)
-list
+list1.remove(100)
+list1
 ```
     [11, 22, 33]
 ]
 --
 .pull-right[ 
 ```python
-list = [1, 2, 3]
+list1 = [1, 2, 3]
 list2 = [4, 5, 6]
-for x,y in zip(list, list2):
+for x,y in zip(list1, list2):
     print(x,", ",y)
 ```
     1 ,  4
@@ -604,15 +604,15 @@ iphonePrice
 Comrehension is a way to build list or dictionaries quickly
 
 ```python
-list = [i**2 for i in range(1, 11)]
-list 
+list1 = [i**2 for i in range(1, 11)]
+list1 
 ```
     [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
 ```python
 import random
-list= [random.randint(0,5) for i in range (1, 10)]
-list
+list1= [random.randint(0,5) for i in range (1, 10)]
+list1
 ```
     [3, 0, 4, 4, 4, 2, 2, 1, 2]
 
@@ -622,7 +622,13 @@ dict
 ```
     {1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343, 8: 512, 9: 729 }
 ---
-#Excercise
+
+class: inverse, middle, center
+# Lab - 2
+## Notebook Name: Session1b-PythonDataScienceBook.ipynb
+
+---
+#Excercise 1
 1. Create and print all the alphabets in the form of a dictionary.
 <br>
 Hint: 
@@ -664,38 +670,33 @@ dict
  89: 'Y',
  90: 'Z'}
 ---
-class: inverse, middle, center
-# Lab - 2
-## Notebook Name: Session1b-PythonDataScienceBook.ipynb
-
----
-# Excercise 
+# Excercise 2 
 2. Use python list for text manipulation. <br>
 (a) Create a python list using the words in this senetence:  `Fannie Mae head office is at DC`. <br>
 (b) Then replace the third (head) and last elements (DC) of the list with `Technology` and `Reston`. <br>
 (c) Convert to list to `'Fannie Mae Technology office is at Reston'` and print the result
 
 ---
-## Solution
+## Solution to Excercise 2 
 ```python
 s= "Fannie Mae head office is at DC"
 s=s.split()
-list=s
-list
+list1=s
+list1
 ```
     ['Fannie', 'Mae', 'head', 'office', 'is', 'at', 'DC']
 
 ```python
-list.remove('head')
-list.remove('DC')
-list
+list1.remove('head')
+list1.remove('DC')
+list1
 ```
     ['Fannie', 'Mae', 'office', 'is', 'at']
 
 ```python
-list.insert(2, "Technology")
-list.insert(8, "Reston")
-' '.join(list)
+list1.insert(2, "Technology")
+list1.insert(8, "Reston")
+' '.join(list1)
 ```
 'Fannie Mae Technology office is at Reston'
 
