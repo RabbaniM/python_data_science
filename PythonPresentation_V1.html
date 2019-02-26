@@ -4,7 +4,7 @@
     <title>Python for Analytics</title>
     <meta charset="utf-8">
     <meta name="author" content="Rabbani M" />
-    <meta name="date" content="2019-02-25" />
+    <meta name="date" content="2019-02-24" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
@@ -14,7 +14,7 @@ class: center, middle, inverse, title-slide
 
 # Python for Analytics
 ### Rabbani M
-### 2019-02-25
+### 2019-02-24
 
 ---
 
@@ -467,19 +467,19 @@ List are most flexible and multipurpose data type in Python. It is defined using
 
 .pull-left[ 
 ```python
-list1 = [11,22,33]
+list = [11,22,33]
 
-list1
+list
 ```
     [11, 22, 33]
 
 ```python
-list1[1]
+list[1]
 ```
     22
     
 ```python
-list1 [0]
+list [0]
 ```
     11
 ]
@@ -492,14 +492,14 @@ list[3]
 
 ```python
 #Update
-list1[2]=100
-list1
+list[2]=100
+list
 ```
     [11, 22, 100]
 
 ```python
-list1.append(33)
-list1
+list.append(33)
+list
 ```
     [11, 22, 100, 33]
 ]
@@ -509,7 +509,7 @@ list1
 .pull-left[ 
 ```python
 #Looping through a list
-for i in list1:
+for i in list:
     print(i)
 ```
     11
@@ -518,17 +518,17 @@ for i in list1:
     33
 ```python
 #deleting an element
-list1.remove(100)
-list1
+list.remove(100)
+list
 ```
     [11, 22, 33]
 ]
 --
 .pull-right[ 
 ```python
-list1 = [1, 2, 3]
+list = [1, 2, 3]
 list2 = [4, 5, 6]
-for x,y in zip(list1, list2):
+for x,y in zip(list, list2):
     print(x,", ",y)
 ```
     1 ,  4
@@ -609,15 +609,15 @@ iphonePrice
 Comrehension is a way to build list or dictionaries quickly
 
 ```python
-list1 = [i**2 for i in range(1, 11)]
-list1 
+list = [i**2 for i in range(1, 11)]
+list 
 ```
     [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
 ```python
 import random
-list1= [random.randint(0,5) for i in range (1, 10)]
-list1
+list= [random.randint(0,5) for i in range (1, 10)]
+list
 ```
     [3, 0, 4, 4, 4, 2, 2, 1, 2]
 
@@ -627,13 +627,7 @@ dict
 ```
     {1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343, 8: 512, 9: 729 }
 ---
-
-class: inverse, middle, center
-# Lab - 2
-## Notebook Name: Session1b-PythonDataScienceBook.ipynb
-
----
-#Excercise 1
+#Excercise
 1. Create and print all the alphabets in the form of a dictionary.
 &lt;br&gt;
 Hint: 
@@ -675,33 +669,38 @@ dict
  89: 'Y',
  90: 'Z'}
 ---
-# Excercise 2 
+class: inverse, middle, center
+# Lab - 2
+## Notebook Name: Session1b-PythonDataScienceBook.ipynb
+
+---
+# Excercise 
 2. Use python list for text manipulation. &lt;br&gt;
 (a) Create a python list using the words in this senetence:  `Fannie Mae head office is at DC`. &lt;br&gt;
 (b) Then replace the third (head) and last elements (DC) of the list with `Technology` and `Reston`. &lt;br&gt;
 (c) Convert to list to `'Fannie Mae Technology office is at Reston'` and print the result
 
 ---
-## Solution to Excercise 2 
+## Solution
 ```python
 s= "Fannie Mae head office is at DC"
 s=s.split()
-list1=s
-list1
+list=s
+list
 ```
     ['Fannie', 'Mae', 'head', 'office', 'is', 'at', 'DC']
 
 ```python
-list1.remove('head')
-list1.remove('DC')
-list1
+list.remove('head')
+list.remove('DC')
+list
 ```
     ['Fannie', 'Mae', 'office', 'is', 'at']
 
 ```python
-list1.insert(2, "Technology")
-list1.insert(8, "Reston")
-' '.join(list1)
+list.insert(2, "Technology")
+list.insert(8, "Reston")
+' '.join(list)
 ```
 'Fannie Mae Technology office is at Reston'
 
