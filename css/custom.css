@@ -1,0 +1,36 @@
+
+.inverse {
+  background-color: #061c38;
+  color: #d6d6d6;
+  font-weight: bold;
+  #text-shadow: 0 0 20px #333;
+}
+
+.remark-slide-content {
+  #background-color: #FAFAFA;
+  border-top: 75px solid #061c38;
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+
+.remark-slide-content > h1 {
+  #font-family: 'Fira Sans';
+  font-weight: bold;
+  font-size: 55px;
+  margin-top: -100px;
+  margin-left: -00px;
+  color: #FAFAFA;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.05em;
+    margin-block-end: 0.20em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
