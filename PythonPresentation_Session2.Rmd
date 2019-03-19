@@ -1,0 +1,515 @@
+---
+title: "Python for Analytics - Session 2"
+author: "Rabbani M"
+date: " `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/custom.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+
+
+---
+layout: true
+background-image: url(python.png), url(numpy.jpeg), url(pandas.png)
+background-position: 95% 5% , 95% 27%, 95% 62% 
+background-size: 22% , 20% , 20%
+---
+#Overview
+Today we will cover Numpy and Pandas. Here is the outlines for today:
+- Introduction to Numpy
+- Lab 1 - Image Anlysis using Numpy Array
+- Introduction to Panda
+- Lab 2 - Data Analysis using Panda
+- Project Discussions
+---
+layout: false
+class: middle, center
+## Let's Get Started ...
+---
+
+# Numpy
+
+<img src="numpy.jpeg"  width="185" />
+
+
+- Short for of Numerical Python - A grid of values all of the same type
+- Most common data science packages are built on Numpy 
+- Numpy operations are about ten times or more faster than a simple list operation
+- The number of dimensions is the rank of the array
+- The shape of the array is a tuple of integers denoting the size of the array along each dimension
+
+#### Key features of numpy are: 
+ * ndarrays: n-dimentional arrays for rapid processing of data without using loops
+ * Broadcasting: defines implicit behavior between multi-dimensional arrays of different sizes. 
+ * Vectorization: enables numeric operations on ndarrays. 
+ * Input/Output: simplifies reading and writing of data from/to file.
+---
+# Creating and Accessing Arrays by Index
+
+.pull-left[
+```python
+# Creating a rank 2 or multidimentional array
+x=np.array([[1,2],[2,4]])
+print(x)
+# Convert a  list to a numpy array
+list1 = [1, 2, 3, 4, 5]
+array1 = np.array(list1)
+print (array1)
+print("Shape of x: ", x.shape)
+print("Shape of array1: ", array1.shape)
+array1.dtype
+```
+    array([[1, 2],
+           [2, 4]])
+    [1 2 3 4 5]
+    Shape of x:  (2, 2)
+    Shape of array1:  (5,)
+    dtype('int64')
+
+]
+   
+.pull-right[
+```python
+# Access by passing the index of each dimension
+print(array2)
+print(array2[0,0])
+print(array2[1, 2])   
+print(array2[1, :])
+print(array2[:, 3])
+print(array2[:, 1:])
+print(array2[:, -2:])
+```
+    array2 =  [[  1   2   3   4   5]
+               [100 200 300 400 500]]
+    array2[0,0]=   1
+    array2[1, 2]=  300
+    array2[1, :]=  [100 200 300 400 500]
+    array2[:, 3]=  [  4 400]
+    array2[:, 1:]=  [[  2   3   4   5]
+                    [200 300 400 500]]
+    array2[0, -2:]=  [4 5]
+] 
+---
+# Slicing Indexes
+.pull-left[
+```python
+# One dimensional array with 10 elements
+a = np.arange(10)
+print(a)
+b = a[2:7:2] #One dimensional (start:stop:step)
+print(b)
+c = a[2:]
+print (c)
+
+
+```
+    [0 1 2 3 4 5 6 7 8 9]
+    [2 4 6]
+    [2 3 4 5 6 7 8 9]
+
+]
+.pull-right[
+###What would these print?
+    [[1 2 3]
+     [4 5 6]
+     [7 8 9]]
+```python
+# Multi-dimensional array slicing
+ print(a[1:]) # Starting from second row 
+ print(a[:,1]) # From the second column
+ print(a[1,:]) # from the second row
+```
+
+]
+
+---
+# Quiz
+###What would these print commands slice from the following array a?
+    [[1 2 3]
+     [4 5 6]
+     [7 8 9]]
+     
+```python
+# Multi-dimensional array slicing
+ print(a[1:]) # Starting from second row 
+ print(a[:,1]) # From the second column
+ print(a[1,:]) # from the second row
+```
+
+    [[4 5 6]
+    [7 8 9]]
+    
+    [2 5 8]
+    
+    [4 5 6] 
+
+---
+# Numpy : Arithmetic Operation
+.pull-left[
+## Numpy Array - Addition
+```python
+x=np.array([[1,2],[2,4]])
+y=np.array([[1,3],[3,5]])
+print(x)
+print (y)
+print(x+y)
+```
+    array([[1, 2],
+           [2, 4]])
+
+    array([[1, 3],
+           [3, 5]])
+    
+    array([[2, 5],
+           [5, 9]])
+   ] 
+
+.pull-right[
+## Multiplication
+```python
+print(x*y)
+```
+    array([[ 1,  6],
+           [ 6, 20]])
+* You can use subtraction, division, square etc.
+* Unlike list you cannot mix data types
+]
+---
+# Basic Statistical Operations
+.pull-left[
+```python
+# setup a random 3 x 5 matrix
+narray1 = 10 * np.random.randn(2,5)
+print(narray1)
+print(narray1.mean()) 
+print(narray1.mean(axis = 1)) #mean by row
+print(narray1.mean(axis = 0)) #mean by col
+```
+    [[10.117 -6.251  1.923 -9.875 -3.118]
+      [ 2.367 14.119 -4.002 -5.276  0.879]]
+
+    -0.0385
+    
+     [-0.921  0.844]
+     
+     [ 1.338 -4.636  6.227 -9.264  5.555]
+] 
+
+.pull-right[
+
+```python
+# sum all the elements
+print(narray1.sum())
+print(np.median(narray1, axis = 1))
+```
+
+    -0.385
+
+    [-2.827 -1.306]
+]
+
+
+
+---
+# Broadcasting
+
+.pull-left[
+```python
+start = np.zeros((4,3))
+print(start)
+# create a rank 1 ndarray with 3 values
+add_rows = np.array([1, 0, 2])
+print(add_rows)
+```
+    [[0. 0. 0.]
+     [0. 0. 0.]
+     [0. 0. 0.]
+     [0. 0. 0.]]
+
+    [1 0 2]
+]
+
+.pull-right[
+```python
+y = start + add_rows  # add to each row of 'start' using broadcasting
+print(y)
+```
+     [[1. 0. 2.]
+      [1. 0. 2.]
+      [1. 0. 2.]
+      [1. 0. 2.]]
+
+* Similarly you can add to each column
+]
+
+---
+# Dot Products on Matrices
+.pull-left[
+```python
+p=np.array([[1,2,3],[2,4,5]])
+print (p)
+q=np.array([[1,3],[3,5],[4,6]])
+print(q)
+p@q
+
+```
+    array([[1, 2, 3],
+           [2, 4, 5]])
+
+    array([[1, 3],
+           [3, 5],
+           [4, 6]])
+
+    array([[19, 31],
+           [34, 56]])
+]
+
+.pull-right[
+```python
+A = np.array([[2., 3.], [3., 4.]])
+B = np.linalg.inv(A) # create its inverse
+print (A)
+print (B)
+print(A@B)
+print(B@A) # A @ B =I
+I = np.identity(2) # Identity matrix
+```
+    [[2. 3.]
+     [3. 4.]]
+    [[-4.  3.]
+    [ 3. -2.]]
+    [[1. 0.]
+    [0. 1.]]
+    [[1. 0.]
+    [0. 1.]]
+]
+
+
+---
+class: inverse, middle, center
+# Lab 2a: Image Analysis Using Python
+---
+# Excercise
+### Excercise - 1: Create a matrix and multiply by its identity matrix?
+### Excercise - 2: - Center observations to have zero mean
+1. Create an array of 10 random observations with three columns - let's call this array X [10 x 3] use `np.random.random(n, n)`
+2. Take the mean of each column X into an array [1 x 3]  _hint: use <array>.mean(axis=0)_
+3. Subract the mean to get a representation of the original array X that is 'centered' around zero
+    
+For extra credit, implement the Mean Normalization formula where X  is the original value and x' is the normalized value.
+
+$$x' = \frac{x - average(x)}{max(x) - min(x)}$$
+
+
+---
+
+### Hints for Excercise 2
+```python
+# fill in the code here. Rpleace None with the proper code
+X = None
+# take the mean of the columns of X
+X_mean = None
+print("The mean of each column" , X_mean)
+# subtract the mean to get the centered values
+X_centered = None
+# check your result by seeing if the mean of the new matrix is zero (to the precision of the cpu)
+if X_centered is not None:
+    print("Check your work")
+    print(X_centered.mean(axis=0))
+```
+---
+### Solution to Excercise 2
+```python
+X = np.random.random((10, 3))
+print(X)
+print()
+# take the mean of the columns of X
+X_mean = X.mean(0)
+print("The mean of each column" , X_mean)
+# subtract the mean to get the centered values
+X_centered = X - X_mean
+print(X_centered)
+print("Check your work:")
+print(X_centered.mean(0))
+```
+---
+class: inverse, center, middle
+# Part 2 - Pandas
+<img src="pandas.png"  width="185" />
+---
+# Pandas
+- *pandas* - a Python library for data analysis.
+- Offers a number of essential data exploration, cleaning and transformation operations 
+- Build upon *numpy* and *scipy* - easy-to-use data structures and data manipulation functions with integrated indexing.
+
+**The main data structures *pandas* provides are *Series* and *DataFrames* **
+.pull-left[
+```python
+ser1=pd.Series([1, 2, 3], 
+                index=['a', 'b', 'c'])
+ser2=pd.Series([2, 4, 6, 7], 
+               index=['a', 'b', 'c', 'd'])
+```
+    ser1=     ser2=       
+    a    1      a    2
+    b    2      b    4
+    c    3      c    6
+                d    7  
+]
+.pull-right[
+```python
+d = {'one' : ser1,
+     'two' : ser2}
+df = pd.DataFrame(d)
+print(df)
+```
+       one  two
+    a  1.0    2
+    b  2.0    4
+    c  3.0    6
+    d  NaN    7
+]
+
+---
+# Pandas Dataframe
+.pull-left[
+
+```python
+df
+df.index
+```
+         one  two
+      a  1.0    2
+      b  2.0    4
+      c  3.0    6
+      d  NaN    7
+    
+    Index(['a', 'b', 'c', 'd'], dtype='object')
+
+```python
+df.columns
+```
+    Index(['one', 'two'], dtype='object')
+]
+
+.pull-right[
+```python
+# # Creating a dataframe with selected indexes
+pd.DataFrame(d, index=[ 'b', 'c'])
+```
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>two</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>b</th>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+```python
+# Projecting a column
+df['one']
+```
+    a    1.0
+    b    2.0
+    c    3.0
+    d    NaN
+    Name: one, dtype: float64
+
+]
+
+
+---
+# Pandas Dataframe (Contd.)
+.pull-left[
+
+```python
+#    one  two
+# a  1.0    2
+# b  2.0    4
+# c  3.0    6
+# d  NaN    7
+
+df.loc['b'] #selecting row
+df.iloc[0] #selecting rows based on position
+df[df['two']>4] #based on condition
+```
+    one    2.0
+    two    4.0
+    
+    one    1.0
+    two    2.0
+
+      one	  two
+    c	3.0	  6
+    d	NaN	  7
+
+]
+
+.pull-right[
+```python
+df.isnull().any() #Checking null values
+df.isnull().sum() #Counting null values
+df['one'].fillna(0,inplace=True)#Replacing null values
+```
+    one     True
+    two    False
+
+    one    1
+    two    0
+
+	    one	two
+    a	1.0	2
+    b	2.0	4
+    c	3.0	6
+    d	0.0	7
+
+
+]
+
+
+---
+class: inverse, center, middle
+# Lab 2b - Pandas DataFrame
+---
+# Excercise
+
+
+---
+# Project Discussion
+1. Form a group of 3 to 5 participants
+2. Submit your project ideas. It can be any simple data analysis task that is relevent to Fannie Mae.
+
